@@ -1,6 +1,5 @@
 include ../DATA_RULES
 DB = map.db
-DUMP = map.dump
 all: $(DB) svg
 	cp $(DB) $(OUT_DIR)
 	for i in `ls *.svg` ; do cp $$i "$(OUT_DIR)/`echo $$i | tr _ \ `" ; done
