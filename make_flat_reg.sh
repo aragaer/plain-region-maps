@@ -1,8 +1,9 @@
 reg=$1;
+regr=`echo $reg | tr _ \ `
 
 exec_sqlite="sqlite3 -batch map.db"
 
-regid=`echo "select regionID from mapRegions where regionName='$reg';" | $exec_sqlite`
+regid=`echo "select regionID from mapRegions where regionName='$regr';" | $exec_sqlite`
 
 q="select f.solarSystemName, t.solarSystemName \
 from mapSolarSystemJumps \
