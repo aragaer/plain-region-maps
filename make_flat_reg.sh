@@ -6,9 +6,10 @@ exec_sqlite="sqlite3 -batch map.db"
 regid=`echo "select regionID from mapRegions where regionName='$regr';" | $exec_sqlite`
 
 q="select f.solarSystemName, t.solarSystemName \
-from mapSolarSystemJumps \
-left join mapSolarSystems as f on fromSolarSystemID=f.solarSystemID \
-left join mapSolarSystems as t on toSolarSystemID=t.solarSystemID;"
+from mapSolarSystemJumps as j \
+left join mapSolarSystems as f on fromSolarSystemID=f.solarSystemID 	\
+left join mapSolarSystems as t on toSolarSystemID=t.solarSystemID	\
+where j.regionID=$regid;"
 
 echo 'graph "$reg" {' > "$reg.dot"
 echo 'graph [overlap=compress, size="15,10"]' >> "$reg.dot"
